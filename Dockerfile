@@ -4,6 +4,10 @@ ENV MAGENTO_VERSION 1.9.2.4
 
 RUN cd /tmp && curl https://codeload.github.com/OpenMage/magento-mirror/tar.gz/$MAGENTO_VERSION -o $MAGENTO_VERSION.tar.gz && tar xvf $MAGENTO_VERSION.tar.gz && mv magento-mirror-$MAGENTO_VERSION/* magento-mirror-$MAGENTO_VERSION/.htaccess /var/www/htdocs
 
+RUN cd /var/www/htdocs \
+    && curl https://www.sixbysix.co.uk/orderflow/releases/orderflow-1.0.0.38-master.tar.gz -o orderflow.tar.gz \
+    && tar xvf orderflow.tar.gz
+
 RUN chown -R www-data:www-data /var/www/htdocs
 
 RUN apt-get update && apt-get install -y mysql-client-5.5 libxml2-dev
@@ -25,7 +29,5 @@ RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/htdocs/' /e
 
 #COPY redis.conf /var/www/htdocs/app/etc/
 
-RUN cd /var/www/htdocs \
-    && curl https://www.sixbysix.co.uk/orderflow/releases/orderflow-1.0.0.38-master.tar.gz -o orderflow.tar.gz \
-    && tar xvf orderflow.tar.gz \
-    && rm orderflow.tar.gz
+
+
