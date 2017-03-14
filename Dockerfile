@@ -24,3 +24,8 @@ RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/htdocs/' /e
 RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/htdocs/' /etc/apache2/sites-available/default-ssl.conf
 
 #COPY redis.conf /var/www/htdocs/app/etc/
+
+RUN cd /var/www/htdocs \
+    && curl https://www.sixbysix.co.uk/orderflow/releases/orderflow-1.0.0.38-master.tar.gz -o orderflow.tar.gz \
+    && tar xvf orderflow.tar.gz \
+    && orderflow.tar.gz
