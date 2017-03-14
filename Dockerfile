@@ -28,4 +28,4 @@ RUN sed -i 's/DocumentRoot \/var\/www\/html/DocumentRoot \/var\/www\/htdocs/' /e
 RUN cd /var/www/htdocs \
     && curl https://www.sixbysix.co.uk/orderflow/releases/orderflow-1.0.0.38-master.tar.gz -o orderflow.tar.gz \
     && tar xvf orderflow.tar.gz \
-    && orderflow.tar.gz
+    && rm orderflow.tar.gz
